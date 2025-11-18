@@ -2,17 +2,36 @@
 
 A simple, customizable overlay for Age of Empires 4 streams that displays your recent match history with real-time updates.
 
+**🎮 [Live Demo](https://bstuddard.github.io/aoe4_stream_stats/)** | **📦 [GitHub Repo](https://github.com/bstuddard/aoe4_stream_stats)**
+
 ![Example Overlay](https://via.placeholder.com/800x400?text=AoE4+Match+History+Overlay)
+
+> **Quick Setup:** Deploy to GitHub Pages, then add `?playerId=YOUR_ID` to the URL in OBS. No code editing required!
 
 ## Features
 
 ✨ **Auto-Refresh** - Automatically updates every 30 seconds to show your latest games  
-🎨 **Stream-Ready** - Transparent background, readable white text with drop shadows  
-📊 **Match Stats** - Shows W/L record, win rate, game modes, and ELO comparisons  
-⚡ **Fast Setup** - Just build and add to OBS with your player ID  
-🎮 **OBS Compatible** - Works perfectly as a local browser source
+🎨 **Stream-Ready** - Transparent background, large readable fonts optimized for 800x500px  
+📊 **Match Stats** - Summary stats (W/L/Win Rate) calculated from 10 most recent games  
+🎯 **Recent Games** - Displays your 2 most recent matches with ELO comparisons  
+⚡ **Fast Setup** - Deploy to GitHub Pages and add to OBS  
+🎮 **OBS Compatible** - Works perfectly as a browser source
 
-## Quick Start
+## Quick Start (No Installation Required!)
+
+### Want to use it right now? 🚀
+
+**Just add this to OBS:**
+
+```
+https://bstuddard.github.io/aoe4_stream_stats/?playerId=YOUR_PLAYER_ID
+```
+
+Replace `YOUR_PLAYER_ID` with your ID from [aoe4world.com](https://aoe4world.com), set width to `800`, height to `500`, and you're done!
+
+---
+
+### Want to customize or fork it?
 
 ### 1. Clone and Install
 
@@ -30,25 +49,7 @@ https://aoe4world.com/players/7228992-YourName
 ```
 The number before the dash (`7228992`) is your player ID.
 
-### 3. Set Your Player ID
-
-Edit `src/App.vue` and change the default player ID on line 25:
-
-```typescript
-const playerId = ref<string>('7228992'); // Change this to YOUR player ID
-```
-
-Replace `7228992` with your own player ID.
-
-### 4. Build the Overlay
-
-```bash
-npm run build
-```
-
-This creates the overlay in the `dist` folder.
-
-### 5. Deploy to GitHub Pages (Recommended)
+### 3. Deploy to GitHub Pages
 
 **Why deploy?** Local files can't make API calls due to browser security (CORS). Deploying to GitHub Pages solves this!
 
@@ -62,47 +63,52 @@ This creates the overlay in the `dist` folder.
 
 Your overlay will be live at: `https://bstuddard.github.io/aoe4_stream_stats/`
 
-### 6. Add to OBS
+### 4. Add to OBS with Your Player ID
 
 1. Open OBS Studio
 2. Add a new **Browser** source
 3. Settings:
-   - **URL**: `https://bstuddard.github.io/aoe4_stream_stats/`
-   - **Width**: `1920`
-   - **Height**: `1080`
+   - **URL**: `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/?playerId=YOUR_PLAYER_ID`
+   - Example: `https://bstuddard.github.io/aoe4_stream_stats/?playerId=7228992`
+   - **Width**: `800`
+   - **Height**: `500`
    - ✅ Check **"Refresh browser when scene becomes active"**
 4. Click OK
 
-**That's it!** The overlay will start showing your recent games with auto-refresh every 30 seconds.
+**That's it!** Just add `?playerId=YOUR_PLAYER_ID` to the end of your GitHub Pages URL. No code editing needed!
 
 ## Two Ways to Set Your Player ID
 
-### Method 1: Edit App.vue (Recommended)
+### Method 1: URL Parameter (Recommended) ⭐
 
-The easiest way is to set a default player ID in the code:
+The easiest way! Just add your player ID to the URL in OBS:
+
+**Format:**
+```
+https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/?playerId=YOUR_PLAYER_ID
+```
+
+**Example:**
+```
+https://bstuddard.github.io/aoe4_stream_stats/?playerId=7228992
+```
+
+✅ No code editing  
+✅ No rebuilding  
+✅ Easy to change anytime  
+
+### Method 2: Edit App.vue (Alternative)
+
+If you prefer to set a default player ID in the code:
 
 1. Edit `src/App.vue` line 25:
    ```typescript
    const playerId = ref<string>('YOUR_PLAYER_ID');
    ```
 2. Run `npm run build`
-3. Add the `dist/index.html` file to OBS
+3. Push to GitHub to deploy
 
-### Method 2: URL Parameter (Advanced)
-
-If you want to change player IDs without rebuilding, you can use URL parameters in OBS:
-
-**Format:**
-```
-file:///C:/path/to/dist/index.html?playerId=YOUR_PLAYER_ID
-```
-
-**Example:**
-```
-file:///C:/Users/YourName/Documents/aoe4_stream_overlay/aoe4_stream_overlay/dist/index.html?playerId=7228992
-```
-
-**Note:** Some versions of OBS may not allow editing the file path after selecting it. If you can't add the `?playerId=` parameter, use Method 1 instead.
+This way you don't need the `?playerId=` parameter in the URL, but you have to rebuild and redeploy every time you want to change it.
 
 ## Customization
 
@@ -153,17 +159,18 @@ Then rebuild: `npm run build`
 npm run dev
 ```
 
-Then open `http://localhost:5173` in your browser (uses default player ID from `App.vue`).
+Then open `http://localhost:5173?playerId=YOUR_PLAYER_ID` in your browser.
 
-Or test with a different player ID: `http://localhost:5173?playerId=YOUR_PLAYER_ID`
+Example: `http://localhost:5173?playerId=7228992`
 
 ### Test in OBS Locally (Alternative to GitHub Pages)
 
 If you don't want to deploy yet, you can test with the dev server:
 
 1. Run `npm run dev`
-2. In OBS Browser source, use URL: `http://localhost:5173`
-3. Width: `1920`, Height: `1080`
+2. In OBS Browser source, use URL: `http://localhost:5173?playerId=YOUR_PLAYER_ID`
+3. Example: `http://localhost:5173?playerId=7228992`
+4. Width: `800`, Height: `500`
 
 **Note:** You must keep the dev server running while streaming. For production, deploy to GitHub Pages instead.
 
@@ -176,8 +183,8 @@ If you don't want to deploy yet, you can test with the dev server:
 - Try refreshing the browser source (right-click → Refresh)
 
 **No data showing:**
-- Make sure you set your player ID in `src/App.vue` (line 25) and rebuilt with `npm run build`
-- OR if using URL parameters, make sure you added `?playerId=YOUR_PLAYER_ID` to the file path
+- **Most likely:** Make sure you added `?playerId=YOUR_PLAYER_ID` to the URL in OBS
+- Example: `https://bstuddard.github.io/aoe4_stream_stats/?playerId=7228992`
 - Check your internet connection
 - Verify the player ID is correct on [aoe4world.com](https://aoe4world.com)
 

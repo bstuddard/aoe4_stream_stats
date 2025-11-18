@@ -1,22 +1,22 @@
 <template>
-	<div class="p-4">
-		<h2 class="text-2xl text-center font-bold text-white mb-6 drop-shadow-lg">
+	<div class="p-6">
+		<h2 class="text-3xl text-center font-bold text-white mb-8 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
 			Recent Match History
 		</h2>
 		
 		<!-- Summary Stats -->
-		<div v-if="!loading && games.length > 0" class="grid grid-cols-3 gap-4 mb-8">
-			<div class="text-center p-4 rounded-lg bg-green-900/80 backdrop-blur-sm border-2 border-green-500">
-				<p class="text-3xl font-bold text-white drop-shadow-md">{{ wins }}</p>
-				<p class="text-sm font-semibold text-green-200 uppercase tracking-wider">Wins</p>
+		<div v-if="!loading && games.length > 0" class="grid grid-cols-3 gap-6 mb-10">
+			<div class="text-center p-6 rounded-lg bg-green-900/90 backdrop-blur-sm border-3 border-green-400 shadow-xl">
+				<p class="text-5xl font-bold text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">{{ wins }}</p>
+				<p class="text-base font-bold text-green-100 uppercase tracking-wider mt-2">Wins</p>
 			</div>
-			<div class="text-center p-4 rounded-lg bg-red-900/80 backdrop-blur-sm border-2 border-red-500">
-				<p class="text-3xl font-bold text-white drop-shadow-md">{{ losses }}</p>
-				<p class="text-sm font-semibold text-red-200 uppercase tracking-wider">Losses</p>
+			<div class="text-center p-6 rounded-lg bg-red-900/90 backdrop-blur-sm border-3 border-red-400 shadow-xl">
+				<p class="text-5xl font-bold text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">{{ losses }}</p>
+				<p class="text-base font-bold text-red-100 uppercase tracking-wider mt-2">Losses</p>
 			</div>
-			<div class="text-center p-4 rounded-lg bg-blue-900/80 backdrop-blur-sm border-2 border-blue-500">
-				<p class="text-3xl font-bold text-white drop-shadow-md">{{ winRate }}%</p>
-				<p class="text-sm font-semibold text-blue-200 uppercase tracking-wider">Win Rate</p>
+			<div class="text-center p-6 rounded-lg bg-blue-900/90 backdrop-blur-sm border-3 border-blue-400 shadow-xl">
+				<p class="text-5xl font-bold text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">{{ winRate }}%</p>
+				<p class="text-base font-bold text-blue-100 uppercase tracking-wider mt-2">Win Rate</p>
 			</div>
 		</div>
 
@@ -35,27 +35,27 @@
 		<div v-else-if="games.length > 0" class="overflow-x-auto">
 			<table class="table-auto w-full">
 				<thead>
-					<tr class="border-b-2 border-white/30">
-						<th class="px-2 sm:px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-white drop-shadow-md">Date</th>
-						<th class="px-2 sm:px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-white drop-shadow-md">Result</th>
-						<th class="px-2 sm:px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-white drop-shadow-md">Mode</th>
-						<th class="px-2 sm:px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-white drop-shadow-md">ELO</th>
-						<th class="px-2 sm:px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-white drop-shadow-md">Opp ELO</th>
+					<tr class="border-b-3 border-white/40">
+						<th class="px-4 sm:px-6 py-4 text-center text-sm font-bold uppercase tracking-wider text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Date</th>
+						<th class="px-4 sm:px-6 py-4 text-center text-sm font-bold uppercase tracking-wider text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Result</th>
+						<th class="px-4 sm:px-6 py-4 text-center text-sm font-bold uppercase tracking-wider text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Mode</th>
+						<th class="px-4 sm:px-6 py-4 text-center text-sm font-bold uppercase tracking-wider text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">ELO</th>
+						<th class="px-4 sm:px-6 py-4 text-center text-sm font-bold uppercase tracking-wider text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Opp ELO</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="game in games" 
+					<tr v-for="game in games.slice(0, 2)" 
 						:key="game.game_id" 
-						class="border-b border-white/20"
+						class="border-b-2 border-white/30"
 						:class="{
-							'bg-green-900/30': game.result === 'win',
-							'bg-red-900/30': game.result === 'loss'
+							'bg-green-900/40': game.result === 'win',
+							'bg-red-900/40': game.result === 'loss'
 						}"
 					>
-						<td class="px-2 sm:px-4 py-4 text-xs sm:text-sm text-center font-medium text-white drop-shadow-lg">{{ formatDate(game.started_at) }}</td>
-						<td class="px-2 sm:px-4 py-4 text-sm text-center">
+						<td class="px-4 sm:px-6 py-6 text-base sm:text-lg text-center font-semibold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{{ formatDate(game.started_at) }}</td>
+						<td class="px-4 sm:px-6 py-6 text-base text-center">
 							<span 
-								class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold drop-shadow-lg"
+								class="inline-flex items-center px-4 py-2 rounded-full text-sm font-extrabold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] shadow-lg"
 								:class="{
 									'bg-green-600 text-white': game.result === 'win',
 									'bg-red-600 text-white': game.result === 'loss'
@@ -64,13 +64,13 @@
 								{{ game.result === 'win' ? '✓ WIN' : '✗ LOSS' }}
 							</span>
 						</td>
-						<td class="px-2 sm:px-4 py-4 text-sm text-center font-medium text-white drop-shadow-lg">
+						<td class="px-4 sm:px-6 py-6 text-base sm:text-lg text-center font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
 							{{ formatGameMode(game.game_mode) }}
 						</td>
-						<td class="px-2 sm:px-4 py-4 text-sm text-center font-bold text-white drop-shadow-lg">
+						<td class="px-4 sm:px-6 py-6 text-lg sm:text-xl text-center font-extrabold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
 							{{ game.own_team_elo || 'N/A' }}
 						</td>
-						<td class="px-2 sm:px-4 py-4 text-sm text-center font-bold text-white drop-shadow-lg">
+						<td class="px-4 sm:px-6 py-6 text-lg sm:text-xl text-center font-extrabold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
 							{{ game.opponent_team_elo || 'N/A' }}
 						</td>
 					</tr>
@@ -87,7 +87,7 @@
 
 <script setup lang="ts">
 // Library
-import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { ref, onMounted, onUnmounted, computed, watch } from 'vue';
 
 // Types
 import type { Ref } from 'vue';
@@ -211,6 +211,16 @@ onMounted(() => {
 
 onUnmounted(() => {
 	stopAutoRefresh();
+});
+
+// Watch for player ID changes and reload immediately
+watch(() => props.playerId, (newPlayerId, oldPlayerId) => {
+	if (newPlayerId !== oldPlayerId) {
+		console.log('Player ID changed from', oldPlayerId, 'to', newPlayerId);
+		stopAutoRefresh();
+		loadGames();
+		startAutoRefresh();
+	}
 });
 </script>
 
