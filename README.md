@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # AoE4 Stream Overlay
 
 A simple, customizable overlay for Age of Empires 4 streams that displays your recent match history with real-time updates.
@@ -206,6 +205,3 @@ MIT License - feel free to use and customize for your streams!
 ---
 
 Made with ❤️ for the AoE4 streaming community
-=======
-# aoe4_stream_stats
->>>>>>> 08e4e44368a55e4a21a565b104499d2860ed821e
