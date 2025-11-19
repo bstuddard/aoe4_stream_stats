@@ -27,7 +27,7 @@ A simple, customizable overlay for Age of Empires 4 streams that displays your r
 https://bstuddard.github.io/aoe4_stream_stats/?playerId=YOUR_PLAYER_ID
 ```
 
-Replace `YOUR_PLAYER_ID` with your ID from [aoe4world.com](https://aoe4world.com), set width to `450`, height to `400`, and you're done!
+Replace `YOUR_PLAYER_ID` with your ID from [aoe4world.com](https://aoe4world.com), set width to `400`, height to `550`, and you're done!
 
 ---
 
@@ -58,9 +58,9 @@ The number before the dash (`7228992`) is your player ID.
 1. **Create a GitHub repository** for your overlay
 2. **Push your code** to the repo
 3. **Enable GitHub Pages:**
-   - Go to repo **Settings** → **Pages**
-   - Source: **GitHub Actions**
-   - Save
+    - Go to repo **Settings** → **Pages**
+    - Source: **GitHub Actions**
+    - Save
 4. **Push to trigger deployment** (or click "Run workflow" in Actions tab)
 
 Your overlay will be live at: `https://bstuddard.github.io/aoe4_stream_stats/`
@@ -70,11 +70,11 @@ Your overlay will be live at: `https://bstuddard.github.io/aoe4_stream_stats/`
 1. Open OBS Studio
 2. Add a new **Browser** source
 3. Settings:
-   - **URL**: `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/?playerId=YOUR_PLAYER_ID`
-   - Example: `https://bstuddard.github.io/aoe4_stream_stats/?playerId=7228992`
-   - **Width**: `450`
-   - **Height**: `400`
-   - ✅ Check **"Refresh browser when scene becomes active"**
+    - **URL**: `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/?playerId=YOUR_PLAYER_ID`
+    - Example: `https://bstuddard.github.io/aoe4_stream_stats/?playerId=7228992`
+    - **Width**: `400`
+    - **Height**: `550`
+    - ✅ Check **"Refresh browser when scene becomes active"**
 4. Click OK
 
 **That's it!** Just add `?playerId=YOUR_PLAYER_ID` to the end of your GitHub Pages URL. No code editing needed!
@@ -106,9 +106,9 @@ https://bstuddard.github.io/aoe4_stream_stats/?playerId=7228992
 If you prefer to set a default player ID in the code:
 
 1. Edit `src/App.vue` line 25:
-   ```typescript
-   const playerId = ref<string>('YOUR_PLAYER_ID')
-   ```
+    ```typescript
+    const playerId = ref<string>('YOUR_PLAYER_ID')
+    ```
 2. Run `npm run build`
 3. Push to GitHub to deploy
 
@@ -176,7 +176,7 @@ If you don't want to deploy yet, you can test with the dev server:
 1. Run `npm run dev`
 2. In OBS Browser source, use URL: `http://localhost:5173?playerId=YOUR_PLAYER_ID`
 3. Example: `http://localhost:5173?playerId=7228992`
-4. Width: `450`, Height: `400`
+4. Width: `400`, Height: `550`
 
 **Note:** You must keep the dev server running while streaming. For production, deploy to GitHub Pages instead.
 
