@@ -11,11 +11,11 @@ A simple, customizable overlay for Age of Empires 4 streams that displays your r
 ## Features
 
 ✨ **Auto-Refresh** - Automatically updates every 30 seconds to show your latest games  
-🎨 **Stream-Ready** - Transparent background, large readable fonts optimized for 800x500px  
+🎨 **Stream-Ready** - Compact corner design with medieval-themed styling (450x400px)  
 📊 **Match Stats** - Summary stats (W/L/Win Rate) calculated from 10 most recent games  
 🎯 **Recent Games** - Displays your 2 most recent matches with ELO comparisons  
 ⚡ **Fast Setup** - Deploy to GitHub Pages and add to OBS  
-🎮 **OBS Compatible** - Works perfectly as a browser source
+🎮 **OBS Compatible** - Works perfectly as a browser source in the top corner
 
 ## Quick Start (No Installation Required!)
 
@@ -27,7 +27,7 @@ A simple, customizable overlay for Age of Empires 4 streams that displays your r
 https://bstuddard.github.io/aoe4_stream_stats/?playerId=YOUR_PLAYER_ID
 ```
 
-Replace `YOUR_PLAYER_ID` with your ID from [aoe4world.com](https://aoe4world.com), set width to `800`, height to `500`, and you're done!
+Replace `YOUR_PLAYER_ID` with your ID from [aoe4world.com](https://aoe4world.com), set width to `450`, height to `400`, and you're done!
 
 ---
 
@@ -44,9 +44,11 @@ npm install
 ### 2. Find Your Player ID
 
 Visit your profile on [aoe4world.com](https://aoe4world.com). Your profile URL will look like:
+
 ```
 https://aoe4world.com/players/7228992-YourName
 ```
+
 The number before the dash (`7228992`) is your player ID.
 
 ### 3. Deploy to GitHub Pages
@@ -70,8 +72,8 @@ Your overlay will be live at: `https://bstuddard.github.io/aoe4_stream_stats/`
 3. Settings:
    - **URL**: `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/?playerId=YOUR_PLAYER_ID`
    - Example: `https://bstuddard.github.io/aoe4_stream_stats/?playerId=7228992`
-   - **Width**: `800`
-   - **Height**: `500`
+   - **Width**: `450`
+   - **Height**: `400`
    - ✅ Check **"Refresh browser when scene becomes active"**
 4. Click OK
 
@@ -84,18 +86,20 @@ Your overlay will be live at: `https://bstuddard.github.io/aoe4_stream_stats/`
 The easiest way! Just add your player ID to the URL in OBS:
 
 **Format:**
+
 ```
 https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/?playerId=YOUR_PLAYER_ID
 ```
 
 **Example:**
+
 ```
 https://bstuddard.github.io/aoe4_stream_stats/?playerId=7228992
 ```
 
 ✅ No code editing  
 ✅ No rebuilding  
-✅ Easy to change anytime  
+✅ Easy to change anytime
 
 ### Method 2: Edit App.vue (Alternative)
 
@@ -103,7 +107,7 @@ If you prefer to set a default player ID in the code:
 
 1. Edit `src/App.vue` line 25:
    ```typescript
-   const playerId = ref<string>('YOUR_PLAYER_ID');
+   const playerId = ref<string>('YOUR_PLAYER_ID')
    ```
 2. Run `npm run build`
 3. Push to GitHub to deploy
@@ -121,6 +125,7 @@ Edit `src/App.vue` and modify the component:
 ```
 
 Times in milliseconds:
+
 - `30000` = 30 seconds (default)
 - `60000` = 1 minute
 - `120000` = 2 minutes
@@ -132,7 +137,7 @@ Then rebuild: `npm run build`
 Edit `src/composables/useAOE4API.ts`, line 16:
 
 ```typescript
-const url: string = `https://aoe4world.com/api/v0/players/${playerId}/games?limit=10`;
+const url: string = `https://aoe4world.com/api/v0/players/${playerId}/games?limit=10`
 ```
 
 Change `limit=10` to your preferred number.
@@ -144,6 +149,7 @@ Then rebuild: `npm run build`
 All styles are in `src/components/RecentGames.vue` using Tailwind CSS classes.
 
 Common changes:
+
 - Win background: `bg-green-900/30`
 - Loss background: `bg-red-900/30`
 - Text shadows: `drop-shadow-lg` → `drop-shadow-xl`
@@ -170,25 +176,28 @@ If you don't want to deploy yet, you can test with the dev server:
 1. Run `npm run dev`
 2. In OBS Browser source, use URL: `http://localhost:5173?playerId=YOUR_PLAYER_ID`
 3. Example: `http://localhost:5173?playerId=7228992`
-4. Width: `800`, Height: `500`
+4. Width: `450`, Height: `400`
 
 **Note:** You must keep the dev server running while streaming. For production, deploy to GitHub Pages instead.
 
 ## Troubleshooting
 
 **Overlay not showing in OBS:**
+
 - Make sure you ran `npm run build`
 - Check the file path is correct
 - Make sure "Local file" is checked in OBS
 - Try refreshing the browser source (right-click → Refresh)
 
 **No data showing:**
+
 - **Most likely:** Make sure you added `?playerId=YOUR_PLAYER_ID` to the URL in OBS
 - Example: `https://bstuddard.github.io/aoe4_stream_stats/?playerId=7228992`
 - Check your internet connection
 - Verify the player ID is correct on [aoe4world.com](https://aoe4world.com)
 
 **Background not transparent:**
+
 - Should be transparent by default
 - Make sure you haven't added a background in OBS
 
